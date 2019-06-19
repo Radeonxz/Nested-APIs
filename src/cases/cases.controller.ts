@@ -23,8 +23,8 @@ export class CasesController {
   }
 
   @Get(':id')
-  findOne(@Param() param): string {
-    return `Case ${param.id}`;
+  findOne(@Param('id') id): Case {
+    return this.caseService.findOne(id);
   }
 
   @Post()

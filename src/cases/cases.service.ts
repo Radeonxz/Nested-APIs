@@ -5,13 +5,13 @@ import { Case } from './interfaces/case.interface';
 export class CasesService {
   private readonly cases: Case[] = [
     {
-      id: '12113131',
+      id: '1',
       name: 'Case One',
       description: 'This is case one',
       clients: 1
     },
     {
-      id: '22222222222',
+      id: '2',
       name: 'Case Two',
       description: 'This is case two',
       clients: 2
@@ -20,5 +20,9 @@ export class CasesService {
 
   findAll(): Case[] {
     return this.cases;
+  }
+
+  findOne(id: string): Case {
+    return this.cases.find(case => case.id === id);
   }
 }
