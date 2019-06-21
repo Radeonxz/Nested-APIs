@@ -23,6 +23,6 @@ export class CasesService {
   }
 
   findOne(id: string): Case {
-    return this.cases.find(case => case.id === id);
+    return this.cases.find(Case => Case.id === id);
   }
 }
