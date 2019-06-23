@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class CasesService {
-  constructor(@InjectModel('Case') private readonly caseModel: Model<Case>) {}
+  constructor(@InjectModel('Case') private readonly caseModel:Model<Case>) {}
 
   async findAll(): Promise<Case[]> {
     return await this.caseModel.find();

@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CasesController } from './cases/cases.controller';
 import { CasesService } from './cases/cases.service';
-import { CasesModule } from './cases/cases.modules';
+import { CasesModule } from './cases/cases.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import config from './config/keys';
 

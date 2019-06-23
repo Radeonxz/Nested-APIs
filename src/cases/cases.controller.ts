@@ -18,12 +18,12 @@ export class CasesController {
   // }
 
   @Get()
-  findAll(): Promise<Case[]> {
+  async findAll(): Promise<Case[]> {
     return this.casesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id): Promise<Case> {
+  async findOne(@Param('id') id): Promise<Case> {
     return this.casesService.findOne(id);
   }
 
