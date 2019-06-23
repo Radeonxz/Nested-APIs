@@ -7,7 +7,7 @@ import { Case } from './interfaces/case.interface';
 
 @Controller('cases')
 export class CasesController {
-  constructor(private readonly caseService: CasesService) {
+  constructor(private readonly casesService: CasesService) {
 
   }
   // Express: 2-2
@@ -18,27 +18,27 @@ export class CasesController {
   // }
 
   @Get()
-  findAll(): Case[] {
-    return this.caseService.findAll();
+  async findAll(): Promise<Case[]> {
+    return this.casesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id): Case {
-    return this.caseService.findOne(id);
+  async findOne(@Param('id') id): Promise<Case> {
+    return this.casesService.findOne(id);
   }
 
-  @Post()
-  create(@Body() createCaseDto: CreateCaseDto): string {
-    return `Name: ${createCaseDto.name}, Desc: ${createCaseDto.description}`;
-  }
+  // @Post()
+  // async create(@Body() createCaseDto: CreateCaseDto): Promise<case> {
+  //   return this.casesService.create(createCaseDto);
+  // }
 
-  @Delete(':id')
-  delete(@Param('id') id): string {
-    return `Delete ${id}`;
-  }
+  // @Delete(':id')
+  // delete(@Param('id') id): string {
+  //   return `Delete ${id}`;
+  // }
 
-  @Put(':id')
-  update(@Body() updateCaseDto: CreateCaseDto, @Param('id') id): string {
-    return `Update ${id} - Name: ${updateCaseDto.name}`;
-  }
+  // @Put(':id')
+  // update(@Body() updateCaseDto: CreateCaseDto, @Param('id') id): string {
+  //   return `Update ${id} - Name: ${updateCaseDto.name}`;
+  // }
 }
