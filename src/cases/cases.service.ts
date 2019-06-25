@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class CasesService {
-  constructor(@InjectModel('Case') private readonly caseModel:Model<Case>) {}
+  constructor(@InjectModel('Case') private readonly caseModel: Model<Case>) {}
 
   async findAll(): Promise<Case[]> {
     return await this.caseModel.find();
@@ -15,8 +15,16 @@ export class CasesService {
     return await this.caseModel.findOne({_id: id});
   }
 
-  // async create(case: Case): Promise<Case> {
-  //   const newCase = new this.caseModel(case);
-  //   return await newCase.save();
-  // }
+  async create(case: Case): Promise<Case> {
+    const newCase = new this.caseModel(case);
+    return await newCase.save();
+  }
+
+  async delete(id: string): Promise<Case> {
+    return await this.caseModel.findByIdAndRemove(id);
+  }
+
+  async update(id: string, case: Case): Promise<Case> {
+    return await this.caseModel.findByIdAndUpdate(id, case, {new: true});
+  }
 }
