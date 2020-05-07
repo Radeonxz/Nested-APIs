@@ -1,12 +1,13 @@
 import {
   Controller,
+  Req,
+  Res,
   Body,
+  Param,
   Get,
   Post,
   Put,
   Delete,
-  Req,
-  Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { CreateItemDto } from './dto/create-item.dto';
@@ -19,18 +20,28 @@ export class ItemsController {
     return res.send('Hello world');
   }
 
+  @Get()
+  findAll(): string {
+    return 'Get All items';
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id): string {
+    return `Item ${id}`;
+  }
+
   @Post()
   create(@Body() createItemDto: CreateItemDto): string {
     return `Name: ${createItemDto.name}, Desc: ${createItemDto.description}`;
   }
 
-  @Put()
-  update(): string {
-    return 'Iten updated';
+  @Put('id')
+  update(@Body() updateItemDto: CreateItemDto, @Param('id') id): string {
+    return `Update ${id} - Name: ${updateItemDto.name}, Desc: ${updateItemDto.description}`;
   }
 
-  @Delete()
-  remove() {
-    return 'Item deleted';
+  @Delete('id')
+  delete(@Param('id') id): string {
+    return `Delete ${id}`;
   }
 }
