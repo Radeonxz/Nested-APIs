@@ -5,10 +5,8 @@ import { Product } from './product.model';
 export class ProductsService {
   private products: Product[] = [];
 
-  // insertProduct(title: string, desc: string, price: number): string {
   insertProduct(title: string, desc: string, price: number) {
     const prodId = Math.random().toString();
-    // const prodId = new Date().toString();
     const newProduct = new Product(prodId, title, desc, price);
     this.products.push(newProduct);
     return prodId;
@@ -38,7 +36,7 @@ export class ProductsService {
   }
 
   private findProduct(id: string): [Product, number] {
-    const productIndex = this.products.findIndex(prod => prod.id === id);
+    const productIndex = this.products.findIndex((prod) => prod.id === id);
     const product = this.products[productIndex];
     if (!product) throw new NotFoundException('Just could not find it...');
     return [product, productIndex];
