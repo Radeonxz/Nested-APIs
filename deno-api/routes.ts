@@ -7,4 +7,19 @@ const getNotes = async (ctx: RouterContext) => {
   const notes = await notesCollection.find();
   ctx.response.body = notes;
 };
-export { getNotes };
+
+const createNodes = async (ctx: RouterContext) => {
+  const { title, body } = await ctx.request.body();
+  const newNote: any = {
+    title,
+    body,
+    date: new Date(),
+  };
+  const id = await notesCollection.insertOne(newNote);
+
+  newNote._id = id;
+  ctx.response.status = 201;
+  ctx.response.body = newNote;
+};
+
+export { getNotes, createNodes };
