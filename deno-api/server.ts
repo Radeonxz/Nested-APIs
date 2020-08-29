@@ -1,5 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import { getNotes, createNodes } from "./routes.ts";
+import { getNotes, createNodes, getNoteById } from "./routes.ts";
 
 const router = new Router();
 
@@ -8,6 +8,7 @@ router
     ctx.response.body("Hello Deno");
   })
   .get("/notes", getNotes)
+  .get("/notes/:id", getNoteById)
   .post("/notes", createNodes);
 
 const app = new Application();

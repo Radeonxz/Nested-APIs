@@ -8,6 +8,12 @@ const getNotes = async (ctx: RouterContext) => {
   ctx.response.body = notes;
 };
 
+const getNoteById = async (ctx: RouterContext) => {
+  const { id } = ctx.params;
+  const note = await notesCollection.findOne({ _id: { $oid: id } });
+  ctx.response.body = note;
+};
+
 const createNodes = async (ctx: RouterContext) => {
   const { title, body } = await ctx.request.body();
   const newNote: any = {
@@ -22,4 +28,4 @@ const createNodes = async (ctx: RouterContext) => {
   ctx.response.body = newNote;
 };
 
-export { getNotes, createNodes };
+export { getNotes, createNodes, getNoteById };
