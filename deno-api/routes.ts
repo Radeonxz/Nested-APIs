@@ -28,4 +28,33 @@ const createNodes = async (ctx: RouterContext) => {
   ctx.response.body = newNote;
 };
 
-export { getNotes, createNodes, getNoteById };
+const updateNote = async (ctx: RouterContext) => {
+  const { id } = ctx.params;
+  const { title, body } = await ctx.request.body();
+  const { modifiedContent } = await notesCollection.updateOne(
+    { _id: { $oid: id } },
+    { $set: { title, body } },
+  );
+
+  if (!modifiedContent) {
+    ctx.response.status = 404;
+    ctx.response.body = { message: "Note not found" };
+    return;
+  }
+
+  ctx.response.body = await notesCollection.findOne({ _id: { $oid: id } });
+};
+
+const deleteNote = async (ctx: RouterContext) => {
+  const { id } = ctx.params;
+  const count = await notesCollection.deleteOne({ _id: { $oid: id } });
+  if (!count) {
+    ctx.response.status = 404;
+    ctx.response.body = { message: "Note not found" };
+    return;
+  }
+
+  ctx.response.status = 204;
+};
+
+export { getNotes, createNodes, getNoteById, updateNote, deleteNote };
