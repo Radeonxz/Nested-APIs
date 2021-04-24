@@ -4,7 +4,7 @@ import {
   createNodes,
   getNoteById,
   updateNote,
-  deleteNote,
+  deleteNote
 } from "./routes.ts";
 
 const router = new Router();

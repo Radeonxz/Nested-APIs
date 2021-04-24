@@ -19,7 +19,7 @@ const createNodes = async (ctx: RouterContext) => {
   const newNote: any = {
     title,
     body,
-    date: new Date(),
+    date: new Date()
   };
   const id = await notesCollection.insertOne(newNote);
 
@@ -33,7 +33,7 @@ const updateNote = async (ctx: RouterContext) => {
   const { title, body } = await ctx.request.body();
   const { modifiedContent } = await notesCollection.updateOne(
     { _id: { $oid: id } },
-    { $set: { title, body } },
+    { $set: { title, body } }
   );
 
   if (!modifiedContent) {
