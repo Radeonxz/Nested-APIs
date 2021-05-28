@@ -7,11 +7,11 @@ const posts = [
   { username: "bar", body: "foo" }
 ];
 
-router.get("/api/posts", (response: RouterContext) => {
+router.get("/", (response: RouterContext) => {
   response.body = posts;
 });
 
-router.post("/api/posts", async ({ request, response }: RouterContext) => {
+router.post("/", async ({ request, response }: RouterContext) => {
   const { username, body } = await request.body().value;
 
   posts.push({ username, body });

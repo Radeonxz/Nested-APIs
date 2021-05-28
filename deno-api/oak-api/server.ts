@@ -15,7 +15,7 @@ router.get("/api", (context: RouterContext) => {
 });
 
 app.use(router.routes());
-app.use(postsRouter.routes());
+app.use(postsRouter.prefix("/api/posts").routes());
 app.use(router.allowedMethods());
 
 console.log(`Server is running on http:localhost:${port}`);
