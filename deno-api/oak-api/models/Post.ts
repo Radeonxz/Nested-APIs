@@ -9,8 +9,6 @@ class Post extends Model {
     username: { type: DataTypes.STRING },
     body: { type: DataTypes.STRING }
   };
-
-  static defaults = {};
 }
 
 export default Post;

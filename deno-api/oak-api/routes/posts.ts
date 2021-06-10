@@ -1,14 +1,18 @@
 import { Router, RouterContext } from "https://deno.land/x/oak/mod.ts";
 
+import Post from "../models/Post";
+
 const router = new Router();
 
-const posts = [
-  { username: "foo", body: "bar" },
-  { username: "bar", body: "foo" }
-];
-
-router.get("/", (response: RouterContext) => {
-  response.body = posts;
+router.get("/", async ({ response }: RouterContext) => {
+  try {
+    const posts = await Post.all();
+    response.body = posts;
+  } catch (err) {
+    console.log(err);
+    response.body = { error: "Something went wrong." };
+    response.status = 500;
+  }
 });
 
 router.post("/", async ({ request, response }: RouterContext) => {
