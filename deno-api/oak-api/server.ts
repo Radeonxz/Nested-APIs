@@ -7,8 +7,6 @@ import {
 import postsRouter from "./routes/posts";
 import db from "./db";
 
-await db.sync({ drop: true });
-
 const app = new Application();
 const router = new Router();
 const port = 5000;
@@ -20,6 +18,10 @@ router.get("/api", (context: RouterContext) => {
 app.use(router.routes());
 app.use(postsRouter.prefix("/api/posts").routes());
 app.use(router.allowedMethods());
+
+await db.sync({ drop: true });
+
+console.log("Database Connected!");
 
 console.log(`Server is running on http:localhost:${port}`);
 
