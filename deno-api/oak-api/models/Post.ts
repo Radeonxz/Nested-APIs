@@ -6,6 +6,7 @@ class Post extends Model {
 
   static fields = {
     id: { primaryKey: true, autoIncrement: true },
+    uuid: { type: DataTypes.UUID },
     username: { type: DataTypes.STRING },
     body: { type: DataTypes.STRING }
   };
